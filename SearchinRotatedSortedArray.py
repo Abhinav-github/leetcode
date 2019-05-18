@@ -6,4 +6,26 @@
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
         
+        while left <= right:
+            current = (left + right) // 2
+            
+            if target == nums[current]:
+                return current
+            
+            if nums[left] <= nums[current]:
+                if nums[left] <= target and target <= nums[current]:
+                    right = current - 1
+                else:
+                    left = current + 1
+
+                    
+            else:
+                if nums[current] <= target and target <= nums[right]:
+                    left = current + 1
+                else:
+                    right = current - 1
+        
+        return -1
