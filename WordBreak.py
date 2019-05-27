@@ -6,16 +6,13 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         if len(wordDict) == 0 or len(s) == 0:
             return False
-        
         check = []
-        for i in range(len(wordDict)):
+        for i in range(len(s)):
             check.append(False)
-            
-        check[0] = True
-        for i in range(len(wordDict)):
-            for j in range(0,i):
+        for i in range(len(s)):
+            for j in range(0,i+1):
                 curr = s[j:i+1]
                 if curr in wordDict and (j == 0 or check[j - 1]):
                     check[i] = True
                     break
-        return check[len(wordDict) - 1]
+        return check[len(s) - 1]
