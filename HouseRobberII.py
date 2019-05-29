@@ -9,4 +9,14 @@
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        
+        if len(nums) == 0:
+            return 0
+        if len(nums) <= 3: 
+            return max(nums) 
+        first = nums[0]
+        second = nums[1]
+        third = nums[2]
+        fourth = nums[0] + nums[2]
+        for n in range(3, len(nums)):
+            second, first, third, fourth = max(second, third), max(first, fourth), second+nums[n], first+nums[n]
+        return max(second, first, third)
